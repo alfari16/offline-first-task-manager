@@ -1,0 +1,261 @@
+:root {
+  --blue: #006ff9;
+  --red: #f44336;
+  --green: #4caf50;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-family: Arial, Helvetica, sans-serif;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+body {
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow: hidden;
+  color: hsla(0, 0%, 0%, 0.8);
+  font-weight: normal;
+  word-wrap: break-word;
+  font-kerning: normal;
+  -moz-font-feature-settings: "kern", "liga", "clig", "calt";
+  -ms-font-feature-settings: "kern", "liga", "clig", "calt";
+  -webkit-font-feature-settings: "kern", "liga", "clig", "calt";
+  font-feature-settings: "kern", "liga", "clig", "calt";
+}
+::-webkit-input-placeholder {
+  color: inherit;
+  opacity: 0.54;
+}
+h1 {
+  color: inherit;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-weight: bold;
+  text-rendering: optimizeLegibility;
+  font-size: 24px;
+  color: #666;
+}
+
+a,
+.tags {
+  color: #555;
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+
+.outer-wrapper {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  place-items: center;
+  background-color: #e9faff;
+}
+
+.container {
+  place-items: center;
+  padding: 20px 30px;
+  max-width: 700px;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  max-height: 560px;
+  border-radius: 10px;
+  box-shadow: 0 3px 20px 0px rgba(0, 0, 0, 0.1);
+  margin: auto;
+  background-color: white;
+}
+
+.d-flex {
+  display: flex;
+}
+
+.d-flex.flex-column {
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.d-flex.align-items-center {
+  align-items: center;
+}
+
+.d-flex.justify-content-center {
+  justify-content: center;
+}
+
+.d-flex.justify-content-between {
+  justify-content: space-between;
+}
+
+.d-flex > .flex-grow {
+  flex: 1;
+}
+
+.btn {
+  font-size: 14px;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.71;
+  letter-spacing: normal;
+  border-radius: 5px;
+  padding: 5px 10px;
+  border: none;
+  background-color: #fff;
+  box-shadow: 0 1px 2px #ddd;
+  color: #333;
+  transition: 0.3s all cubic-bezier(0.785, 0.135, 0.15, 0.86);
+  cursor: pointer;
+}
+
+.btn:focus,
+.btn:active {
+  outline: none;
+}
+
+.btn.btn-blue {
+  color: var(--blue);
+}
+
+.btn.btn-red {
+  color: var(--red);
+}
+
+.btn.btn-green {
+  color: var(--green);
+}
+
+.btn:hover,
+.footer .btn:hover {
+  background-color: var(--blue);
+  color: white;
+}
+
+.btn.btn-blue:hover {
+  background-color: var(--blue);
+}
+
+.btn.btn-red:hover {
+  background-color: var(--red);
+}
+
+.btn.btn-green:hover {
+  background-color: var(--green);
+}
+
+.bg-red {
+  background-color: red;
+}
+
+.header {
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #eee;
+}
+
+.footer {
+  padding-top: 20px;
+  border-top: 1px solid #eee;
+}
+
+.footer .btn {
+  border-radius: 0 25px 25px 0;
+  border-top: 1px solid #eee;
+  padding: 10px 30px;
+  color: var(--blue);
+}
+
+.form-control,
+.checkbox {
+  border-radius: 25px;
+  padding: 10px;
+  outline: none;
+  font-size: 14px;
+  box-shadow: 0 1px 2px #ddd;
+  color: #333;
+  border: 1px solid #eee;
+}
+.form-control.condensed {
+  padding: 5px 10px;
+}
+.checkbox > * {
+  font-size: 22px;
+  color: var(--green);
+}
+
+.form-control:focus {
+  border: 1px solid var(--blue);
+}
+
+.checkbox {
+  border-radius: 0;
+  margin-right: 20px;
+  width: 10px;
+  height: 10px;
+  background-color: white;
+}
+
+.date {
+  font-style: italic;
+  font-size: 14px;
+  color: #999;
+}
+
+.single-list {
+  cursor: pointer;
+  padding: 10px 0;
+  transition: 0.3s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+}
+
+.single-list:hover {
+  padding: 10px 20px;
+  background-color: #efefef;
+}
+
+.single-list .right .btn:first-child {
+  margin-right: 10px;
+}
+.task-content {
+  margin-right: 20px;
+}
+.task-content .title {
+  margin-bottom: 5px;
+}
+.task-content .title.form-control {
+  margin-bottom: 10px;
+}
+.task-content .tags.form-control {
+  margin-top: 10px;
+}
+.task-content .title.isCompleted {
+  text-decoration: line-through;
+}
+.task-content .date {
+  margin-bottom: 2px;
+}
+.container .body {
+  overflow-y: auto;
+}
+.header small {
+  margin-right: 10px;
+  display: inline-block;
+  color: #aaa;
+}
+.footer .form-control {
+  border: none;
+  border-top: 1px solid #eee;
+  border-radius: 25px 0 0 25px;
+  padding: 15px;
+}
+
+input {
+  display: block;
+  width: 100%;
+}
