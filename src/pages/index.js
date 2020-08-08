@@ -152,15 +152,56 @@ const Body = ({
   deleteTask,
   editId,
 }) => {
+  const [search, setSearch] = useState("")
+  const [tag, setTag] = useState("")
+
+  useEffect(() => {
+    const splitArray = window.location.href.toString().split("#")
+    const localTag = splitArray[splitArray.length - 1]
+    if (localTag && splitArray.length === 2) setTag(localTag)
+    console.log("tag", tag, localTag)
+  })
+
+  const clearFilter = () => {
+    setSearch("")
+    setTag("")
+    window.history.pushState({}, "", "/")
+  }
+
   const taskMapping = [
     ...tasks.filter(el => !el.isCompleted),
     ...tasks.filter(el => el.isCompleted),
-  ].map(el => ({
-    ...el,
-    isOnEditMode: el._id === editId,
-  }))
+  ]
+    .map(el => ({
+      ...el,
+      isOnEditMode: el._id === editId,
+    }))
+    .filter(el => (!!tag ? el.tags.includes(tag) : true))
+    .filter(el => el.content.includes(search))
+
   return (
     <div className="body flex-grow">
+      <div className="d-flex align-items-center search">
+        <div className="form-control condensed d-flex align-items-center flex-grow">
+          <input
+            type="text"
+            className="flex-grow"
+            placeholder="Search task"
+            value={search}
+            onChange={e => setSearch(e.target.value)}
+          />
+          {tag && (
+            <span className="tag-display">
+              in tag "<strong>{tag}</strong>"
+            </span>
+          )}
+        </div>
+        <i
+          onClick={clearFilter}
+          className="fa fa-times"
+          title="Clear filter"
+        ></i>
+      </div>
       <div className="list-wrapper">
         {taskMapping.map(
           (
@@ -216,7 +257,7 @@ const Body = ({
                         tag:{" "}
                         {tags.map((el, idx) => (
                           <Fragment key={el + idx}>
-                            <a href="javascript:void()">{el}</a>
+                            <a href={`#${el}`}>{el}</a>
                             {idx !== tags.length - 1 && <span>, </span>}
                           </Fragment>
                         ))}

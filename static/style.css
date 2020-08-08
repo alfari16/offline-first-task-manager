@@ -271,3 +271,22 @@ input {
   padding: 10px;
   border-radius: 5px;
 }
+.search {
+  margin-bottom: 10px;
+}
+.search i {
+  cursor: pointer;
+  display: block;
+  margin-left: 10px;
+}
+
+.tag-display {
+  margin-left: 10px;
+}
+
+.form-control input,
+.form-control input:focus,
+.form-control input:active {
+  border: none;
+  outline: none;
+}
