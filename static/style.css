@@ -151,7 +151,10 @@ a:hover {
 }
 
 .bg-red {
-  background-color: red;
+  background-color: var(--red);
+}
+.bg-green {
+  background-color: var(--green);
 }
 
 .header {
@@ -258,4 +261,13 @@ a:hover {
 input {
   display: block;
   width: 100%;
+}
+
+.flag-online {
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
 }
