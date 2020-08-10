@@ -3,7 +3,7 @@ import { registerPrompt, prompt } from 'inquirer';
 import autoCompletePrompt from 'inquirer-autocomplete-prompt';
 import moment from 'moment';
 import Database from './db';
-import { addSpace } from './writer';
+import { drawTable } from './writer';
 
 registerPrompt('autocomplete', autoCompletePrompt);
 
@@ -30,29 +30,7 @@ program
       };
     });
     const col = [16, 32, 20, 11, 6];
-
-    console.log('-'.repeat(col.reduce((prev, curr) => prev + curr + 3, 1)));
-    console.log(
-      Object.keys(data[0]).reduce((prev, el, index) => {
-        return `${prev} ${addSpace(el, col[index])} |`;
-      }, '|')
-    );
-    console.log('-'.repeat(col.reduce((prev, curr) => prev + curr + 3, 1)));
-    data.forEach(({ createdAt, content, tags, isCompleted, isSync }) => {
-      console.log(
-        `| ${addSpace(
-          moment(createdAt).format('YYYY-MM-DD HH:mm'),
-          col[0]
-        )} | ${addSpace(content, col[1])} | ${addSpace(
-          tags.join(', '),
-          col[2]
-        )} | ${addSpace(isCompleted.toString(), col[3])} | ${addSpace(
-          isSync.toString(),
-          col[4]
-        )} |`
-      );
-    });
-    console.log('-'.repeat(col.reduce((prev, curr) => prev + curr + 3, 1)));
+    console.log(drawTable(data, col));
     console.log('Last sync: ' + moment(Database.dataMeta.tsUpload).fromNow());
     await Database.deinitialize();
   });

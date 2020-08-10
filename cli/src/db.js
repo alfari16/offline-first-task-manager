@@ -8,6 +8,7 @@ const DB_PASSWORD = 'iniadmin';
 export class Database extends PouchyStore {
   constructor() {
     super();
+    console.e = () => {};
   }
   get name() {
     return DB_NAME;
