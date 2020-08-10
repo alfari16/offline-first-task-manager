@@ -1,5 +1,11 @@
 "use strict";
 
+var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+
+var _regenerator = _interopRequireDefault(require("@babel/runtime/regenerator"));
+
+var _asyncToGenerator2 = _interopRequireDefault(require("@babel/runtime/helpers/asyncToGenerator"));
+
 var _commander = require("commander");
 
 var _inquirer = require("inquirer");
@@ -12,20 +18,14 @@ var _db = _interopRequireDefault(require("./db"));
 
 var _writer = require("./writer");
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
-
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
-
 (0, _inquirer.registerPrompt)('autocomplete', _inquirerAutocompletePrompt["default"]);
 
 _commander.program.version('0.0.1').description('An Offline-First Task Manager');
 
 _commander.program.command('show-task').alias('s').description('Show all task').option('--incomplete', 'Show incomplete task').option('--completed', 'Show completed task').action( /*#__PURE__*/function () {
-  var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(cmd) {
+  var _ref = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee(cmd) {
     var data, col;
-    return regeneratorRuntime.wrap(function _callee$(_context) {
+    return _regenerator["default"].wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
@@ -65,10 +65,10 @@ _commander.program.command('show-task').alias('s').description('Show all task').
   };
 }());
 
-_commander.program.command('mark-complete').alias('m').description('Complete a task').action( /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3() {
+_commander.program.command('mark-complete').alias('m').description('Complete a task').action( /*#__PURE__*/(0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee3() {
   var tasks, _yield$prompt, taskContent;
 
-  return regeneratorRuntime.wrap(function _callee3$(_context3) {
+  return _regenerator["default"].wrap(function _callee3$(_context3) {
     while (1) {
       switch (_context3.prev = _context3.next) {
         case 0:
@@ -97,8 +97,8 @@ _commander.program.command('mark-complete').alias('m').description('Complete a t
             message: 'Select a task to complete',
             source: function source(answersSoFar, input) {
               return new Promise( /*#__PURE__*/function () {
-                var _ref3 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(resolve) {
-                  return regeneratorRuntime.wrap(function _callee2$(_context2) {
+                var _ref3 = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee2(resolve) {
+                  return _regenerator["default"].wrap(function _callee2$(_context2) {
                     while (1) {
                       switch (_context2.prev = _context2.next) {
                         case 0:
@@ -145,9 +145,9 @@ _commander.program.command('mark-complete').alias('m').description('Complete a t
   }, _callee3);
 })));
 
-_commander.program.command('sync').alias('sy').description('Sync local data to server').action( /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee4() {
+_commander.program.command('sync').alias('sy').description('Sync local data to server').action( /*#__PURE__*/(0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee4() {
   var unUploadedCount;
-  return regeneratorRuntime.wrap(function _callee4$(_context4) {
+  return _regenerator["default"].wrap(function _callee4$(_context4) {
     while (1) {
       switch (_context4.prev = _context4.next) {
         case 0:
@@ -171,11 +171,10 @@ _commander.program.command('sync').alias('sy').description('Sync local data to s
           console.log('Network is offline. Please check your internet connection.');
 
         case 12:
-          console.log(_db["default"].dataMeta.tsUpload);
-          _context4.next = 15;
+          _context4.next = 14;
           return _db["default"].deinitialize();
 
-        case 15:
+        case 14:
         case "end":
           return _context4.stop();
       }

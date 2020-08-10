@@ -1,17 +1,17 @@
 "use strict";
 
+var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports["default"] = void 0;
 
+var _typeof2 = _interopRequireDefault(require("@babel/runtime/helpers/typeof"));
+
 var _sparkMd = _interopRequireDefault(require("spark-md5"));
 
 var _btoa = _interopRequireDefault(require("btoa"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
-
-function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function collate(a, b) {
   if (a === b) {
@@ -27,7 +27,7 @@ function collate(a, b) {
     return ai - bi;
   }
 
-  switch (_typeof(a)) {
+  switch ((0, _typeof2["default"])(a)) {
     case 'number':
       return a - b;
 
@@ -47,7 +47,7 @@ function collate(a, b) {
 
 
 function normalizeKey(key) {
-  switch (_typeof(key)) {
+  switch ((0, _typeof2["default"])(key)) {
     case 'undefined':
       return null;
 
@@ -147,7 +147,7 @@ function objectCollate(a, b) {
 
 function collationIndex(x) {
   var id = ['boolean', 'number', 'string', 'object'];
-  var idx = id.indexOf(_typeof(x)); //false if -1 otherwise true, but fast!!!!1
+  var idx = id.indexOf((0, _typeof2["default"])(x)); //false if -1 otherwise true, but fast!!!!1
 
   if (~idx) {
     if (x === null) {

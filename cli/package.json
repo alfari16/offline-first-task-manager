@@ -19,12 +19,14 @@
   },
   "scripts": {
     "build": "babel src --out-dir dist --ignore '**/*.test.js'",
-    "dev": "nodemon --exec babel-node src/command.js"
+    "dev": "nodemon --exec babel-node src/command.js",
+    "test": "yarn build && mocha"
   },
   "devDependencies": {
     "@babel/cli": "^7.10.5",
     "@babel/core": "^7.0.0",
     "@babel/node": "^7.0.0",
+    "@babel/plugin-transform-runtime": "^7.11.0",
     "@babel/preset-env": "^7.0.0",
     "babel-core": "^7.0.0-bridge.0",
     "chai": "^4.2.0",

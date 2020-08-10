@@ -1,17 +1,27 @@
 "use strict";
 
+var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports["default"] = void 0;
+
+var _regenerator = _interopRequireDefault(require("@babel/runtime/regenerator"));
+
+var _defineProperty2 = _interopRequireDefault(require("@babel/runtime/helpers/defineProperty"));
+
+var _asyncToGenerator2 = _interopRequireDefault(require("@babel/runtime/helpers/asyncToGenerator"));
+
+var _classCallCheck2 = _interopRequireDefault(require("@babel/runtime/helpers/classCallCheck"));
+
+var _createClass2 = _interopRequireDefault(require("@babel/runtime/helpers/createClass"));
 
 var _PouchDB = _interopRequireDefault(require("./libs/PouchDB"));
 
 var _generateReplicationId = _interopRequireDefault(require("./libs/generateReplicationId"));
 
 var _checkInternet = _interopRequireDefault(require("./libs/checkInternet"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 function _createForOfIteratorHelper(o, allowArrayLike) { var it; if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
 
@@ -21,19 +31,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { (0, _defineProperty2["default"])(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 console.e = console.log;
 var ID_META_DOC = 'meta';
@@ -53,7 +51,7 @@ class options: create getter fo these:
 
 var PouchyStore = /*#__PURE__*/function () {
   function PouchyStore() {
-    _classCallCheck(this, PouchyStore);
+    (0, _classCallCheck2["default"])(this, PouchyStore);
 
     // set default options
     if (!('isUseData' in this)) {
@@ -75,7 +73,7 @@ var PouchyStore = /*#__PURE__*/function () {
     this.initializeProperties();
   }
 
-  _createClass(PouchyStore, [{
+  (0, _createClass2["default"])(PouchyStore, [{
     key: "initializeProperties",
     value: function initializeProperties() {
       // initialize in-memory data
@@ -103,11 +101,11 @@ var PouchyStore = /*#__PURE__*/function () {
   }, {
     key: "initialize",
     value: function () {
-      var _initialize = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
+      var _initialize = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee() {
         var _this = this;
 
         var dataMetaOld, docs;
-        return regeneratorRuntime.wrap(function _callee$(_context) {
+        return _regenerator["default"].wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
@@ -258,8 +256,8 @@ var PouchyStore = /*#__PURE__*/function () {
   }, {
     key: "deinitialize",
     value: function () {
-      var _deinitialize = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2() {
-        return regeneratorRuntime.wrap(function _callee2$(_context2) {
+      var _deinitialize = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee2() {
+        return _regenerator["default"].wrap(function _callee2$(_context2) {
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
@@ -344,8 +342,8 @@ var PouchyStore = /*#__PURE__*/function () {
   }, {
     key: "persistMeta",
     value: function () {
-      var _persistMeta = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3() {
-        return regeneratorRuntime.wrap(function _callee3$(_context3) {
+      var _persistMeta = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee3() {
+        return _regenerator["default"].wrap(function _callee3$(_context3) {
           while (1) {
             switch (_context3.prev = _context3.next) {
               case 0:
@@ -379,10 +377,10 @@ var PouchyStore = /*#__PURE__*/function () {
   }, {
     key: "initUnuploadeds",
     value: function () {
-      var _initUnuploadeds = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee4() {
+      var _initUnuploadeds = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee4() {
         var replicationId, replicationDoc, unuploadeds, _iterator, _step, result, doc;
 
-        return regeneratorRuntime.wrap(function _callee4$(_context4) {
+        return _regenerator["default"].wrap(function _callee4$(_context4) {
           while (1) {
             switch (_context4.prev = _context4.next) {
               case 0:
@@ -583,10 +581,10 @@ var PouchyStore = /*#__PURE__*/function () {
   }, {
     key: "upload",
     value: function () {
-      var _upload = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee5() {
+      var _upload = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee5() {
         var result, ids, _i, _ids, id;
 
-        return regeneratorRuntime.wrap(function _callee5$(_context5) {
+        return _regenerator["default"].wrap(function _callee5$(_context5) {
           while (1) {
             switch (_context5.prev = _context5.next) {
               case 0:
@@ -638,11 +636,11 @@ var PouchyStore = /*#__PURE__*/function () {
   }, {
     key: "addItem",
     value: function () {
-      var _addItem = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee6(payload) {
+      var _addItem = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee6(payload) {
         var user,
             id,
             _args6 = arguments;
-        return regeneratorRuntime.wrap(function _callee6$(_context6) {
+        return _regenerator["default"].wrap(function _callee6$(_context6) {
           while (1) {
             switch (_context6.prev = _context6.next) {
               case 0:
@@ -668,12 +666,12 @@ var PouchyStore = /*#__PURE__*/function () {
   }, {
     key: "addItemWithId",
     value: function () {
-      var _addItemWithId = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee7(id, payload) {
+      var _addItemWithId = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee7(id, payload) {
         var user,
             now,
             actionBy,
             _args7 = arguments;
-        return regeneratorRuntime.wrap(function _callee7$(_context7) {
+        return _regenerator["default"].wrap(function _callee7$(_context7) {
           while (1) {
             switch (_context7.prev = _context7.next) {
               case 0:
@@ -707,13 +705,13 @@ var PouchyStore = /*#__PURE__*/function () {
   }, {
     key: "editItem",
     value: function () {
-      var _editItem = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee8(id, payload) {
+      var _editItem = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee8(id, payload) {
         var user,
             now,
             actionBy,
             doc,
             _args8 = arguments;
-        return regeneratorRuntime.wrap(function _callee8$(_context8) {
+        return _regenerator["default"].wrap(function _callee8$(_context8) {
           while (1) {
             switch (_context8.prev = _context8.next) {
               case 0:
@@ -759,14 +757,14 @@ var PouchyStore = /*#__PURE__*/function () {
   }, {
     key: "deleteItem",
     value: function () {
-      var _deleteItem = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee9(id) {
+      var _deleteItem = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee9(id) {
         var user,
             now,
             actionBy,
             doc,
             isRealDelete,
             _args9 = arguments;
-        return regeneratorRuntime.wrap(function _callee9$(_context9) {
+        return _regenerator["default"].wrap(function _callee9$(_context9) {
           while (1) {
             switch (_context9.prev = _context9.next) {
               case 0:
@@ -827,9 +825,9 @@ var PouchyStore = /*#__PURE__*/function () {
   }, {
     key: "checkIdExist",
     value: function () {
-      var _checkIdExist = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee10(id) {
+      var _checkIdExist = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee10(id) {
         var doc;
-        return regeneratorRuntime.wrap(function _callee10$(_context10) {
+        return _regenerator["default"].wrap(function _callee10$(_context10) {
           while (1) {
             switch (_context10.prev = _context10.next) {
               case 0:
@@ -884,9 +882,9 @@ var PouchyStore = /*#__PURE__*/function () {
   }, {
     key: "editSingle",
     value: function () {
-      var _editSingle = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee11(payload) {
+      var _editSingle = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee11(payload) {
         var doc;
-        return regeneratorRuntime.wrap(function _callee11$(_context11) {
+        return _regenerator["default"].wrap(function _callee11$(_context11) {
           while (1) {
             switch (_context11.prev = _context11.next) {
               case 0:
@@ -927,9 +925,9 @@ var PouchyStore = /*#__PURE__*/function () {
   }, {
     key: "deleteSingle",
     value: function () {
-      var _deleteSingle = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee12() {
+      var _deleteSingle = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee12() {
         var doc, payload;
-        return regeneratorRuntime.wrap(function _callee12$(_context12) {
+        return _regenerator["default"].wrap(function _callee12$(_context12) {
           while (1) {
             switch (_context12.prev = _context12.next) {
               case 0:
@@ -1035,7 +1033,6 @@ var PouchyStore = /*#__PURE__*/function () {
       }
     }
   }]);
-
   return PouchyStore;
 }();
 
