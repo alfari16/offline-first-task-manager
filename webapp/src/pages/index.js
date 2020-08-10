@@ -31,7 +31,8 @@ const IndexPage = () => {
       if (!db || !db.isInitialized) {
         db = new Database()
         await db.initialize()
-        syncData()
+        setSync(false)
+        // syncData()
       }
       setLastSync(moment(db.dataMeta.tsUpload).fromNow())
       setUnUploadeds(db.countUnuploadeds())
@@ -59,12 +60,7 @@ const IndexPage = () => {
   }
 
   const editTask = async (id, payload) => {
-    const { createdAt, tags, content, isCompleted } = tasks.find(
-      el => el._id === id
-    )
-    const newValue = { createdAt, tags, content, isCompleted, ...payload }
-    console.log("update", id, newValue)
-    await db.editItem(id, newValue)
+    await db.editItem(id, payload)
     syncData()
   }
 
