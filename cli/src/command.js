@@ -53,6 +53,7 @@ program
       );
     });
     console.log('-'.repeat(col.reduce((prev, curr) => prev + curr + 3, 1)));
+    console.log('Last sync: ' + moment(Database.dataMeta.tsUpload).fromNow());
     await Database.deinitialize();
   });
 
@@ -63,6 +64,10 @@ program
   .action(async () => {
     await Database.initialize();
     const tasks = Database.allTask('incomplete');
+    if (!tasks.length) {
+      await Database.deinitialize();
+      return console.log("You don't have any incomplete task.");
+    }
     let { taskContent } = await prompt([
       {
         type: 'autocomplete',
@@ -87,7 +92,6 @@ program
     await Database.markComplete(taskContent);
     await Database.deinitialize();
     console.log(`Task "${taskContent}" completed`);
-    return 0;
   });
 
 program
@@ -96,17 +100,15 @@ program
   .description('Sync local data to server')
   .action(async () => {
     await Database.initialize();
+    const unUploadedCount = Database.countUnuploadeds();
     try {
-      const unUploadedCount = Database.countUnuploadeds();
       await Database.upload();
       console.log(`${unUploadedCount} task(s) synchronized`);
-    } catch (error) {
-      console.log(
-        `Network is trouble. Sync will automatically triggerred on the next connection`
-      );
+    } catch (err) {
+      console.log('Network is offline. Please check your internet connection.');
     }
+    console.log(Database.dataMeta.tsUpload);
     await Database.deinitialize();
-    return 0;
   });
 
 program.parse(process.argv);

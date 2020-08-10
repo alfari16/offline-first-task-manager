@@ -1,7 +1,7 @@
 import PouchyStore from './pouchy-store/PouchyStore';
 
 const DB_NAME = 'tasks_manager';
-const DB_ENDPOINT = 'http://13.250.43.79:5984';
+const DB_ENDPOINT = 'http://13.250.43.79:5984/';
 const DB_USER = 'admin';
 const DB_PASSWORD = 'iniadmin';
 
@@ -38,7 +38,7 @@ export class Database extends PouchyStore {
   }
 
   getTask(id) {
-    return this.allTask.find((el) => el._id === id);
+    return this.allTask().find((el) => el._id === id);
   }
 
   lastSync() {
@@ -46,13 +46,12 @@ export class Database extends PouchyStore {
   }
 
   async syncData() {
-    clearTimeout(this.timeout);
     try {
       await this.upload();
     } catch (error) {
-      this.timeout = setTimeout(async () => {
-        await this.syncData();
-      }, 3000);
+      console.log(
+        `Problematic network. You need to do manual synchronization.`
+      );
     }
   }
 
@@ -61,22 +60,7 @@ export class Database extends PouchyStore {
       (el) => el.content === content
     );
     await this.editItem(_id, { isCompleted: true });
-    this.syncData();
-  }
-}
-
-export class DatabaseHelper {
-  constructor() {
-    this.dbInstance = new Database();
-    this.timeout = null;
-  }
-
-  async init() {
-    await this.dbInstance.initialize();
-  }
-
-  async close() {
-    await this.dbInstance.deinitialize();
+    await this.syncData();
   }
 }
 

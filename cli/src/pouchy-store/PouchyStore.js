@@ -318,7 +318,8 @@ export default class PouchyStore {
 
     await checkInternet(this.urlRemote);
 
-    await this.dbLocal.replicate.to(this.dbRemote);
+    const result = await this.dbLocal.replicate.to(this.dbRemote);
+    console.e(result, this.dataMeta);
     const ids = Object.keys(this.dataMeta.unuploadeds);
     for (let id of ids) {
       delete this.dataMeta.unuploadeds[id];

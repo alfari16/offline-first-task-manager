@@ -13,7 +13,9 @@
     "inquirer-table-prompt": "^0.2.1",
     "moment": "^2.27.0",
     "pouchdb": "^7.2.2",
-    "pouchy-store": "^0.1.7"
+    "pouchy-store": "^0.1.7",
+    "pouchdb-adapter-websql-core": "^7.0.0",
+    "react-native-sqlite-storage": "^3.3.9"
   },
   "scripts": {
     "build": "babel src --out-dir dist --ignore '**/*.test.js'",
